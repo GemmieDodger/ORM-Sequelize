@@ -16,6 +16,15 @@ Menu.init({
 Restaurant.hasMany(Menu)
 Menu.belongsTo(Restaurant)
 
-module.exports = { Restaurant, Menu, sequelize }
+class Item extends Model {}
+Item.init({
+    name: DataTypes.STRING,
+    price: DataTypes.FLOAT
+}, {sequelize})
+
+Menu.hasMany(Item)
+Item.belongsTo(Menu)
+
+module.exports = { Restaurant, Menu, Item, sequelize }
 
 //npm sequalize documentation
