@@ -1,0 +1,10 @@
+<section class="newMenu">
+    <h3>Add a Menu to your Restaurant</h3>
+        <form action="/restaurant" method="POST"><br>
+            <label for="title">Menu Name:</label><br>
+            <input name="title" type="text" placeholder="Breakfast" id="title"><br>
+            <input type="hidden" name="restaurant_id" value="{{restaurant.id}}"><br>
+            <button>Add Menu</button>
+        </form>
+
+</section>

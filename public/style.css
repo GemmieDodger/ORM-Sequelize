@@ -1,4 +1,6 @@
 
+/*ALL*/
+
 * {
     padding: 0;
     margin: 0;
@@ -21,21 +23,25 @@ body {
     /* grid-template-columns: auto, auto, 10%;  */
 }
 
+/*LINKS*/
 a {
     color: #fffbe6;
     text-decoration: none;
 }
+
+/* HEADER AND NAV*/
+
 nav {
     grid-area: nav;
     position: relative;
-  
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
 header {
+    grid-area: header;
     position: relative;
-    padding-top: 2rem;
+    padding-top: 4rem;
     padding-bottom: 2rem;
 }
 li {
@@ -71,10 +77,8 @@ h4 {
 h5 {
     color: #fffbe6;
 }
-/* .imageCard {
-    background-image: 100% 150px;
-    
-} */
+
+/*BREAKPOINTS*/
 
 article {
     margin: 1rem;
@@ -92,6 +96,59 @@ aside {
     text-align: center;
     color: #fffbe6;
 }
+
+/*FOOTER*/
+
+footer {
+    grid-area: footer;
+    color: #fffbe6;
+    text-align: center;
+    padding: 2rem;
+}
+/*FORM*/
+
+form {
+    width: 100%;
+    padding: 5%;
+    position: static;
+}
+input {
+    position: relative;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+}
+
+select {
+    position: relative;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+}
+label {
+    color: #fffbe6;
+}
+button {
+    color: #ccad00;
+    padding: 0.5rem;
+    background-color: #0d0d0d;
+    margin-top: 1rem;
+}
+.formHeader {
+    padding: 12px 20px;
+    margin: 8px 0px;
+}
+.newMenu {
+    position: relative;
+    grid-area: newMenu;
+}
+.newItem {
+    position: relative;
+    grid-area: newItem;
+}
+
 .callOut {
     grid-area: callOut;
     background-color:#333333;
@@ -102,8 +159,7 @@ aside {
     position: relative ;
 }
 
-/* .callCenter {
-} */
+/* USEFUL CLASSES */
 
 .verticalCenter {
     margin: 0;
@@ -120,14 +176,17 @@ aside {
 .generalText {
     color: #fffbe6;
 }
+.CRUD {
+    padding:5px;
 
-footer {
-    grid-area: footer;
-    color: #fffbe6;
-    text-align: center;
-    padding: 2rem;
 }
 
+.options {
+    margin-bottom: 10px;
+    padding: 10px;    
+}
+
+/*RESTAURANTS PAGE*/
 .card {
     background-color:#333333;
     height: 250px;
@@ -139,13 +198,15 @@ footer {
     opacity:.8;
     
 }
+/*MENU PAGE*/
 .menuItems {
     min-height: 500px;
 }
 .backButton {
-    bottom: 10px;
-    left: 10px;
+    padding: 10px;
 }
+
+/*MEDIA QUERIES*/
 @media screen and (min-width: 40rem) {
     /* this is when media is applied*/
     .list {

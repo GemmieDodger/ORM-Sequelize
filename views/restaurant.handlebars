@@ -2,6 +2,8 @@
     <div style="background-image:url({{restaurant.image}}); position: static;  background-size: cover; height: 100%; background-position: center center;">
         <div class="miniCard" >
             <h2 class="centerText">{{restaurant.name}}</h2>
+            <a class="editRestaurant CRUD" href="/restaurants/{{restaurant.id}}/editRestaurant">✎</a>
+            <a class="deleteRestaurant CRUD" href="/restaurants/{{restaurant.id}}/deleteRestaurant">╳</a>
         </div>
 
         <div class = "backButton">
@@ -14,14 +16,22 @@
 </section>
 <aside class="menuItems">
         {{#each menus}}
-        <div >
+     
             <h2 > {{this.title}}</h2>
-        </div>
-        <dl>
+            <div class="options">
+            <a class="editMenu CRUD" href="/restaurants/{{restaurant.id}}/{{this.id}}/editMenu">✎</a>
+            <a class="deleteMenu CRUD" href="/restaurants/{{restaurant.id}}/{{this.id}}/deleteMenu">╳</a>
+            </div>
+        <dl style="padding:5px;">
             {{#each this.items}}
-            <dt>{{this.name}}</dt>
-            <dd>{{this.price}}</dd>
+                <dt>{{this.name}}</dt>
+                <dd>{{this.price}}</dd>
             {{/each}}
         </dl>
         {{/each}}
+
+        <a href="/restaurants/{{restaurant.id}}/{{this.id}}/addMenu"> <h4>Add new Menu</h4></a>
+        {{!-- <button href="/restaurant/{{this.id}}/">Add new Item</button> --}}
 </aside>
+
+
