@@ -9,19 +9,6 @@ html {
     background-color: #0d0d0d;
 }
 
-body {
-    display: grid;
-    min-height: 100vh; 
-    grid-template-columns: auto auto 30%;
-    grid-template-areas:      
-        'header header nav'
-        'callOut callOut aside'
-        'main main main'
-        'footer footer footer';
-    grid-template-rows: auto auto auto;
-
-    /* grid-template-columns: auto, auto, 10%;  */
-}
 
 /*LINKS*/
 a {
@@ -29,21 +16,7 @@ a {
     text-decoration: none;
 }
 
-/* HEADER AND NAV*/
 
-nav {
-    grid-area: nav;
-    position: relative;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-header {
-    grid-area: header;
-    position: relative;
-    padding-top: 4rem;
-    padding-bottom: 2rem;
-}
 li {
     display: inline;
     text-align: center;
@@ -78,11 +51,50 @@ h5 {
     color: #fffbe6;
 }
 
-/*BREAKPOINTS*/
 
 article {
     margin: 1rem;
     position: relative;
+}
+
+/*GRID*/
+
+
+body {
+    display: grid;
+    min-height: 100vh; 
+    grid-template-columns: auto auto 30%;
+    grid-template-areas:      
+        'header header nav'
+        'callOut callOut aside'
+        'main main main'
+        'footer footer footer';
+    grid-template-rows: auto auto auto;
+    /* grid-template-columns: auto, auto, 10%;  */
+}
+/* HEADER AND NAV*/
+
+nav {
+    grid-area: nav;
+    position: relative;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+header {
+    grid-area: header;
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+.callOut {
+    grid-area: callOut;
+    background-color:#333333;
+    color: #ccad00;
+     /* margin: 5%; */
+     padding: 5%;
+    text-align: center;
+    position: relative ;
 }
 
 main {
@@ -105,6 +117,7 @@ footer {
     text-align: center;
     padding: 2rem;
 }
+
 /*FORM*/
 
 form {
@@ -149,15 +162,6 @@ button {
     grid-area: newItem;
 }
 
-.callOut {
-    grid-area: callOut;
-    background-color:#333333;
-    color: #ccad00;
-     /* margin: 5%; */
-     padding: 5%;
-    text-align: center;
-    position: relative ;
-}
 
 /* USEFUL CLASSES */
 
