@@ -1,0 +1,27 @@
+<section class="callOut">
+    <div style="background-image:url({{restaurant.image}}); position: static;  background-size: cover; height: 100%; background-position: center center;">
+        <div class="miniCard" >
+            <h2 class="centerText">{{restaurant.name}}</h2>
+        </div>
+
+        <div class = "backButton">
+            <a href="../restaurants">
+                <h5>Back to all restaurants.</h5>
+            </a>
+        </div>
+    </div>
+
+</section>
+<aside class="menuItems">
+        {{#each menus}}
+        <div >
+            <h2 > {{this.title}}</h2>
+        </div>
+        <dl>
+            {{#each this.items}}
+            <dt>{{this.name}}</dt>
+            <dd>{{this.price}}</dd>
+            {{/each}}
+        </dl>
+        {{/each}}
+</aside>

@@ -1,0 +1,16 @@
+<main>
+<section class="list">
+
+    {{#each restaurants}}
+    <a href="/restaurants/{{this.id}}">
+        <article class="card" style="background-image:url({{this.image}}); position: static;  background-size: cover; background-position: center center;">
+
+                    <div class="miniCard">
+                        <h2 class="centerText">{{this.name}}</h2>
+                    </div>
+
+       </article>
+       </a>
+    {{/each}}
+</section>
+</main>
