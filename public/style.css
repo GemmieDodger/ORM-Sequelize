@@ -29,19 +29,21 @@ h1 {
     padding: 1rem;
     font-size: 40px;
     font-family: 'La Belle Aurore', cursive;
-
+    
     /* font-family: 'Devonshire', cursive; */
 }
 
 h2 {
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 30px;
     grid-area: subheader;  
     color: #ccad00;
   
   }
 h3 {
     color: #ccad00;
+    font-size: 20px;
 }
 h4 {
     color: #fffbe6;
@@ -63,40 +65,59 @@ article {
 body {
     display: grid;
     min-height: 100vh; 
-    grid-template-columns: auto auto 30%;
+    grid-template-columns: auto;
     grid-template-areas:      
-        'header header nav'
-        'callOut callOut aside'
-        'main main main'
-        'footer footer footer';
-    grid-template-rows: auto auto auto;
+        'header'
+        'nav'
+        'callOut'
+        'home'
+        'aside'
+        'main'
+        'admin'
+        'footer';
+    grid-template-rows: auto;
     /* grid-template-columns: auto, auto, 10%;  */
 }
 /* HEADER AND NAV*/
 
 nav {
+
     grid-area: nav;
     position: relative;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
 }
 
 header {
     grid-area: header;
     position: relative;
+    text-align: center;
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+.admin {
+    grid-area: admin;
 }
 .callOut {
     grid-area: callOut;
     background-color:#333333;
     color: #ccad00;
-     /* margin: 5%; */
-     padding: 5%;
+
     text-align: center;
     position: relative ;
 }
 
+.home {
+    grid-area: home;
+    background-color:#333333;
+    color: #ccad00;
+    text-align: center;
+    position: relative ;
+}
+.centerText {
+    text-align: center;
+}
 main {
     grid-area: main;
 }
@@ -104,7 +125,7 @@ aside {
     grid-area: aside;
     background-color:#333333;
     padding: 5%;
-    /* margin: 5%; */
+
     text-align: center;
     color: #fffbe6;
 }
@@ -118,20 +139,28 @@ footer {
     padding: 2rem;
 }
 
+/*MENU*/
+
+
 /*FORM*/
 
 form {
-    width: 100%;
-    padding: 5%;
+    /* width: 100%; */
+  
     position: static;
+    text-align: center;
 }
 input {
     position: relative;
-    width: 80%;
     padding: 12px 20px;
     margin: 8px 0px;
     box-sizing: border-box;
+    font-size: 12px;
 }
+.inputBox {
+    width: 80%;
+}
+
 
 select {
     position: relative;
@@ -143,11 +172,32 @@ select {
 label {
     color: #fffbe6;
 }
+
+.labelEdit {
+    min-width: 100px;
+}
 button {
     color: #ccad00;
     padding: 0.5rem;
     background-color: #0d0d0d;
     margin-top: 1rem;
+}
+.update {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color:#333333;
+    margin: 5%;
+
+}
+
+.price {
+    width: 60px;
+}
+.item {
+    width: 80px;
+}
+.editItem{
+  
 }
 .formHeader {
     padding: 12px 20px;
@@ -200,17 +250,31 @@ button {
     padding-top:1rem;
     padding-bottom: 1rem;
     opacity:.8;
+    text-align:center;
     
 }
 /*MENU PAGE*/
 .menuItems {
-    min-height: 500px;
+    /* min-height: 500px; */
 }
 .backButton {
     padding: 10px;
+    text-align: center;
+}
+dl {
+    margin-bottom: 1rem;
 }
 
+.addMenu {
+    margin: 10%;
+    padding: 1rem;
+}
 /*MEDIA QUERIES*/
+
+@media (min-width: 600px) {
+    
+}
+
 @media screen and (min-width: 40rem) {
     /* this is when media is applied*/
     .list {
@@ -244,10 +308,20 @@ button {
         grid-template-rows: none;
         
     }
-    /* .callOut {
-        grid-template-columns: auto auto auto;
-    }
-    .aside { 
-        grid-template-columns: auto auto auto;
-    } */
+    
+body {
+    display: grid;
+    min-height: 100vh; 
+    grid-template-columns: auto auto auto;
+    grid-template-areas:      
+        'header header header'
+        'nav nav nav'
+        'callOut callOut aside'
+        'home home home'
+        'main main main'
+        'admin admin admin'
+        'footer footer footer';
+    grid-template-rows: auto;
+    /* grid-template-columns: auto, auto, 10%;  */
+}
 }

@@ -31,14 +31,14 @@ app.get('/restaurants', async (request, response) => {
             {model: Menu, as: 'menus'} //check this
         ]
     })    
-    console.log(restaurants)
     response.render('restaurants', {restaurants, date: new Date(), name: "Gemma Druce"})
 })
 
 //GET RESTAURANT SINGULAR
 
-app.get('/restaurants/:id', async (request, response) => {
-    const restaurant = await Restaurant.findByPk(request.params.id)
+app.get('/restaurants/:restaurant_id', async (request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
+
     const menus = await restaurant.getMenus({
         include: [
             {model: Item, as: 'items'}
@@ -48,59 +48,103 @@ app.get('/restaurants/:id', async (request, response) => {
 })
 
 //link to GET edit restaurant
-app.get('/restaurants/:id/editRestaurant', async(request, response) => {
-    const restaurant = await Restaurant.findByPk(request.params.id)
+app.get('/restaurants/:restaurant_id/editRestaurant', async(request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
     response.render('editRestaurant', {restaurant})
 })
 
-//LINK TO edit restaurant
+// EDIT RESTAURANT
 
-app.post('/restaurants/:id/editRestaurant', async (request, response) => {
-    const restaurant = await Restaurant.findByPk(request.params.id)
+app.post('/restaurants/:restaurant_id/editRestaurant', async (request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
     await restaurant.update(request.body)
-    response.redirect(`/restaurants/${request.params.id}`) //this does not work
+    response.redirect(`/restaurants/${request.params.restaurant_id}`)
 })
 
 //CREATE RESTAURANT
 app.post('/restaurants', async (request, response) => {
-    console.log(request.body)
     await Restaurant.create(request.body)
     response.redirect(('/restaurants'))
 })
 
-app.post('/restaurant', async (request, response) => {
-    await Menu.create(request.body)
-    response.redirect(('/restaurant'))
-})
-
 //delete restaurant
-app.get('/restaurants/:id/deleteRestaurant', (request, response) => {
-    Restaurant.findByPk(request.params.id)
+app.get('/restaurants/:restaurant_id/deleteRestaurant', (request, response) => {
+    Restaurant.findByPk(request.params.restaurant_id)
     .then(restaurant => {
         restaurant.destroy()
         response.redirect('/restaurants')
     })
 })
+//MENUS
+//CREATE  MENUS - WORKS
 
-/* THESE ARE NOT RIGHT
-app.get('/restaurants/:id/delete', async(request, response) -> {
-    const restaurant = await Restaurant. findByPk(REQ.PArams.id)
-    await restaurant.destroy()
-    response.redirect()
+app.post('/restaurants/:restaurant_id/menus', async (request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
+    await restaurant.createMenu({title:request.body.title})
+    response.redirect((`/restaurants/${request.params.restaurant_id}`))
 })
 
-*/
+
+// GET TO EDIT MENU
+app.get('/restaurants/:restaurant_id/menus/:menu_id/editMenu', async(request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
+    const menu = await Menu.findByPk(request.params.menu_id)
+    const items = await menu.getItems()
+    response.render('editMenu',{restaurant, menu, items, date: new Date(), name: "Gemma Druce"})
+
+})
+
+//DELETE MENU
+
+app.get('/restaurants/:restaurant_id/menus/:menu_id/deleteMenu', async (request, response) => {
+    Restaurant.findByPk(request.params.restaurant_id)
+    Menu.findByPk(request.params.menu_id)
+    .then(menu => {
+        menu.destroy()
+        response.redirect(`/restaurants/${request.params.restaurant_id}`)
+    })
+        
+})
+
+//EDIT MENU TITLE
+app.post('/restaurants/:restaurant_id/menus/:menu_id/editMenu', async (request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
+    const menu = await Menu.findByPk(request.params.menu_id)
+    await menu.update(request.body)
+    response.redirect(`/restaurants/${request.params.restaurant_id}/menus/${request.params.menu_id}/editMenu`)
+})
+
+//ITEMS
 
 
-//Should be able to get rid of this
+//UPDATE ITEM - not working
+app.post('/restaurants/:restaurant_id/menus/:menu_id/editMenu', async (request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
+    const menu = await Menu.findByPk(request.params.menu_id)
+    const item = await Item.findByPk(request.params.item_id)
+    // console.log(item)
+    await item.update(request.body) 
+    response.redirect(`/restaurants/${request.params.restaurant_id}/menus/${request.params.menu_id}/editMenu`)
+})
+//ADD NEW ITEM - YES
+app.post('/restaurants/:restaurant_id/menus/:menu_id/items', async (request, response) => {
+    const restaurant = await Restaurant.findByPk(request.params.restaurant_id)
+    const menu = await Menu.findByPk(request.params.menu_id)
+    await menu.createItem({name:request.body.name, price:request.body.price})
+    response.redirect((`/restaurants/${request.params.restaurant_id}/menus/${request.params.menu_id}/editMenu`))
+})
 
-// app.post('/restaurants/:id', async (request, response) => {
-//     const restaurant = await Restaurant.findByPk(req.params.id)
-//     restaurant.update(req.body)
-//     response.redirect('/restaurants/${restaurant.id}')
-// }
-// )
 
+//DELETE ITEM - YES
+app.get('/restaurants/:restaurant_id/menus/:menu_id/items/:item_id/deleteItem', async (request, response) => {
+    Restaurant.findByPk(request.params.restaurant_id)
+    Menu.findByPk(request.params.menu_id)
+    Item.findByPk(request.params.item_id)
+    .then(item => {
+        item.destroy()
+        response.redirect(`/restaurants/${request.params.restaurant_id}/menus/${request.params.menu_id}/editMenu`)
+    })  
+})
 
 app.listen(3000, async ()  => {
     await sequelize.sync

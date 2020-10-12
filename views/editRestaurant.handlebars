@@ -1,9 +1,9 @@
     <article class="update" style="background-image:url({{this.image}}); position: static;  background-size: cover; background-position: center center;">
         <form action="/restaurants/{{restaurant.id}}/editRestaurant" method="POST">
             <label for="name">Restaurant's name:</label><br>
-            <input name="name" type="text" value="{{restaurant.name}}" id="name" required><br>
+            <input  class="inputBox" name="name" type="text" value="{{restaurant.name}}" id="name" required><br>
             <label for="image">Header Image:</label><br>
-            <input name="image" type="url" value="{{restaurant.image}}" id="image" required><br>
+            <input  class="inputBox" name="image" type="url" value="{{restaurant.image}}" id="image" required><br>
             <button>Update Restaurant</button>
         </form>
     </article>

@@ -1,0 +1,48 @@
+
+<main>
+    <h2>{{restaurant.title}}</h2>
+    
+    <section >
+
+        <!--UPDATE TITLE-->
+        <form class="update" action="/restaurants/{{restaurant.id}}/menus/{{menu.id}}/editMenu" method="POST">
+            <label for="title">Current Menu Title:</label> 
+            <h4>{{menu.title}}</h4><br>
+            <input name="title"  value="{{menu.title}}"> 
+            <button>Update Title</button>  
+        </form>
+    </section>
+
+    <section > 
+        <!--UPDATE ITEM-->
+        <!--action is where the form is being taken to-->
+        <form class="update" action="/restaurants/{{restaurant.id}}/menus/{{menu.id}}/editMenu" method="POST">
+            
+            <label></label>
+            </div>
+            {{#each items}}
+                <div class="editItem" >
+                    <label for="name">Item</label>
+                    <input type="text" name="name" value="{{this.name}}">
+                    <label for="price">Price</label>
+                    <input class="price" type="float" value="{{this.price}}">
+                    <a class="deleteItem CRUD" href="/restaurants/{{../restaurant.id}}/menus/{{../menu.id}}/items/{{this.id}}/deleteItem">╳</a>
+                </div>
+            {{/each}}   
+            <button>Update Items</button>
+        </form>
+
+
+        <!--ADD ITEM-->
+        <form class="update" action="/restaurants/{{restaurant.id}}/menus/{{menu.id}}/items" method="POST">
+            <div class="editItem" >
+                <label  for="name">New item:</label>
+                <input name="name" id="name" type="text"><br>
+                <label  for="price">Price:</label>
+                <input class="price" name="price" id="price" type="number"> 
+            </div>
+            <button>Add New Item</button>  
+        </form>
+    </section>
+</main>
+
